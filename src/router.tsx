@@ -4,9 +4,10 @@ import HomePage from "@/pages/HomePage";
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "@/layouts/DashboardLayout";
 import BooksPage from "@/pages/BooksPage";
+import AuthLayout from "@/layouts/AuthLayout";
 export const router = createBrowserRouter([
   {
-    path: "dashboard",
+    path: "/dashboard",
     element: <DashboardLayout />,
     children: [
       {
@@ -20,11 +21,17 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/login",
-    element: <LoginPage />,
-  },
-  {
-    path: "/register",
-    element: <RegisterPage />,
+    path: "/auth",
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "login",
+        element: <LoginPage />,
+      },
+      {
+        path: "register",
+        element: <RegisterPage />,
+      },
+    ],
   },
 ]);
