@@ -44,7 +44,8 @@ const BooksPage = () => {
     queryFn: getBooks,
     staleTime: 10000, //in miliseconds
   });
-  // console.log(data);
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error loading books</div>;
   return (
     <>
       <div className="flex items-center justify-between">
@@ -63,9 +64,7 @@ const BooksPage = () => {
         <Link to={"/dashboard/books/create"}>
           <Button>
             <PlusCircle className="h-3.5 w-3.5" />
-            <span className="ml-2">
-              Add Book
-            </span>
+            <span className="ml-2">Add Book</span>
           </Button>
         </Link>
       </div>
@@ -147,7 +146,8 @@ const BooksPage = () => {
         </CardContent>
         <CardFooter>
           <div className="text-xs text-muted-foreground">
-            Showing <strong>1-10</strong> of <strong>32</strong> products
+            Showing <strong>1-10</strong> of{" "}
+            <strong>{data?.data.length}</strong> books
           </div>
         </CardFooter>
       </Card>

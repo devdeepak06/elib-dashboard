@@ -10,6 +10,5 @@ export interface Book {
   author: Author;
   coverImage: string;
   file: string;
-  createdAt: string;
-  
+  createdAt: string; 
 }
