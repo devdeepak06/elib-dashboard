@@ -9,6 +9,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { register } from "@/http/api";
+import useTokenStore from "@/store";
 import { useMutation } from "@tanstack/react-query";
 import { LoaderCircle } from "lucide-react";
 import { useRef } from "react";
@@ -16,6 +17,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
+  const setToken = useTokenStore((state) => state.setToken);
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -23,8 +25,9 @@ const RegisterPage = () => {
   //mutation
   const mutation = useMutation({
     mutationFn: register,
-    onSuccess: () => {
-      navigate("/auth/login");
+    onSuccess: (response) => {
+      setToken(response.data.accessToken);
+      navigate("/dashboard/home");
     },
   });
 
@@ -45,12 +48,12 @@ const RegisterPage = () => {
           <CardTitle className="text-xl">Sign Up</CardTitle>
           <CardDescription>
             Enter your information to create an account
-          <br />
-          {mutation.isError && (
-            <span className="text-red-500 text-sm">
-              {mutation.error.message}
-            </span>
-          )}  
+            <br />
+            {mutation.isError && (
+              <span className="text-red-500 text-sm">
+                {mutation.error.message}
+              </span>
+            )}
           </CardDescription>
         </CardHeader>
         <CardContent>

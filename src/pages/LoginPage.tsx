@@ -31,11 +31,11 @@ const LoginPage = () => {
       navigate("/dashboard/home");
     },
   });
-
+  
   const handleLoginSubmit = () => {
     const email = emailRef.current?.value;
     const password = passwordRef.current?.value;
-    console.log("Data", { email, password });
+    // console.log("Data", { email, password });
     if (!email || !password) {
       return alert("Please enter email or password");
     }
