@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL:"http://localhost:5513",
+  baseURL: "http://localhost:5513",
   headers: {
     "Content-Type": "application/json",
   },
@@ -46,3 +46,7 @@ export const register = async (data: {
 // }) => {
 //   return api.post("api/users/register", data);
 // };
+
+export const getBooks = async () => {
+  return api.get("/api/books");
+};
