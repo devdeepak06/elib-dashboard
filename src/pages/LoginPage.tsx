@@ -61,7 +61,7 @@ const LoginPage = () => {
               ref={emailRef}
               id="email"
               type="email"
-              placeholder="xyz@example.com"
+              placeholder="maxrobinson95@example.com"
               required
               autoComplete="email"
             />
