@@ -1,3 +1,4 @@
+import useTokenStore from "@/store";
 import axios from "axios";
 
 const api = axios.create({
@@ -5,6 +6,22 @@ const api = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
+});
+
+api.interceptors.request.use((config) => {
+  const token = useTokenStore.getState().token;
+
+  // Ensure that headers exist and are defined
+  if (config.headers) {
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+  } else {
+    config.headers = {
+      Authorization: `Bearer ${token}`,
+    };
+  }
+  return config;
 });
 interface LoginResponse {
   accessToken: string;
@@ -49,4 +66,12 @@ export const register = async (data: {
 
 export const getBooks = async () => {
   return api.get("/api/books");
+};
+
+export const createBook = async (data: FormData) => {
+  return api.post("/api/books", data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
 };

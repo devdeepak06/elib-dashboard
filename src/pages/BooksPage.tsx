@@ -61,9 +61,9 @@ const BooksPage = () => {
           </BreadcrumbList>
         </Breadcrumb>
         <Link to={"/dashboard/books/create"}>
-          <Button size="sm" className="h-8 gap-1">
+          <Button>
             <PlusCircle className="h-3.5 w-3.5" />
-            <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
+            <span className="ml-2">
               Add Book
             </span>
           </Button>
