@@ -1,4 +1,3 @@
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -22,10 +21,7 @@ import {
   Package2,
   Bell,
   Home,
-  ShoppingCart,
   Package,
-  Users,
-  LineChart,
   Menu,
   Search,
   CircleUser,
